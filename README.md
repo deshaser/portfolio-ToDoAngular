@@ -2,7 +2,7 @@ portfolio-ToDoAngular
 =====================
 
 Создать приложения заметок. Приложения должно выглядеть как в мокапе.
-![alt text](https://github.com/deshaser/portfolio-ToDoAngular/mockup.png)
+![alt text](https://raw.github.com/deshaser/portfolio-ToDoAngular/master/mockup.png)
 
 Должны быть реализованы следующие возможности:
 
