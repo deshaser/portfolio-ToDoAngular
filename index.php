@@ -15,12 +15,15 @@
                 <input class="btn-primary" type="submit" value="add">
             </form>
             <ul class="unstyled">
-                <li ng-repeat="todo in todos">
+                <li ng-repeat="todo in todos | filter : {done : searchQuery}">
                     <input type="checkbox" ng-model="todo.done">
                     <span class="done-{{todo.done}}">{{todo.text}}</span>
                 </li>
             </ul>
             <span>{{remaining()}} item left</span>
+            <a ng-click="searchQuery = ''" href="">All</a>
+            <a ng-click="searchQuery = 'false'" href="">Active</a>
+            <a ng-click="searchQuery = 'true'" href="">Completed</a>
             <a href="" ng-click="archive()">Clear completed({{todos.length - remaining()}})</a>
         </div>
     </body>
