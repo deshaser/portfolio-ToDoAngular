@@ -17,10 +17,10 @@
                 </form>
                 <ul class="todoList">
                     <li class="todoItem {{todo.done ? 'done' : ''}}" ng-repeat="todo in todos | filter : {done : searchQuery}">
-                        <input id="todoItemInput{{$index + 1}}" class="todoItemInput" type="checkbox" ng-model="todo.done">
-                        <label class="todoItemLabel" for="todoItemInput{{$index + 1}}"></label>
+                        <input id="todoItemInput{{todo.id}}" class="todoItemInput" type="checkbox" ng-model="todo.done">
+                        <label class="todoItemLabel" for="todoItemInput{{todo.id}}"></label>
                         <span class="todoItemText">{{todo.text}}</span>
-                        <div class="todoItemRemove" ng-click="remove($index)">&#10006;</div>
+                        <div class="todoItemRemove" ng-click="remove(todo.id)">&#10006;</div>
                     </li>
                 </ul>
                 <div class="todoFooter">
