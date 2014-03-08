@@ -1,8 +1,11 @@
 function TodoCtrl($scope) {
+
+    // function initializes todo's
     $scope.todos = [
         {id: 1, text:'learn angular', done:true},
         {id: 2, text:'build an angular app', done:false}];
 
+    // function added todo in todo's array
     $scope.addTodo = function() {
         if ($scope.todoText) {
             var $id = $scope.todos.length ? $scope.todos[$scope.todos.length-1].id + 1 : 1; // in the future get this value into php
@@ -11,27 +14,28 @@ function TodoCtrl($scope) {
         }
     };
 
+    // function returns the number of active todo's
     $scope.remaining = function() {
-        var count = 0;
-        angular.forEach($scope.todos, function(todo) {
-            count += todo.done ? 0 : 1;
-        });
+        var countBy = _.countBy($scope.todos, function(todo) { return todo.done ? 'done' : 'undone'; });
+        var count = countBy.undone || 0;
         return count;
     };
 
-    $scope.archive = function() {
-        var oldTodos = $scope.todos;
-        $scope.todos = [];
-        angular.forEach(oldTodos, function(todo) {
-            if (!todo.done) $scope.todos.push(todo);
-        });
+    // function returns the number of completed todo's
+    $scope.trash = function() {
+        var countBy = _.countBy($scope.todos, function(todo) { return todo.done ? 'done' : 'undone'; });
+        var count = countBy.done || 0;
+        return count;
     };
 
-    $scope.remove = function(id) {
-        angular.forEach($scope.todos, function(todo, key) {
-            if (todo.id == id) {
-                $scope.todos.splice(key, 1);
-            }
-        });
+    // function clears the finished objects
+    $scope.archive = function() {
+        $scope.todos = _.reject($scope.todos, function(todo){ return todo.done == true; });
     };
+
+    // function remove the todo
+    $scope.remove = function(id) {
+        $scope.todos = _.reject($scope.todos, function(todo){ return todo.id == id; });
+    };
+
 }

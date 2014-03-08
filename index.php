@@ -4,7 +4,8 @@
         <title>ToDo</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="static/styles.css">
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+        <script src="//documentcloud.github.io/underscore/underscore-min.js" type='text/javascript'></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js" type='text/javascript'></script>
         <script src="static/scripts.js" type="text/javascript"></script>
     </head>
     <body>
@@ -28,7 +29,7 @@
                     <a ng-class="{selected: !searchQuery}" ng-click="searchQuery = ''" class="todoFilterLink" href="">All</a>
                     <a ng-class="{selected: searchQuery == 'false'}" ng-click="searchQuery = 'false'" class="todoFilterLink" href="">Active</a>
                     <a ng-class="{selected: searchQuery == 'true'}" ng-click="searchQuery = 'true'" class="todoFilterLink" href="">Completed</a>
-                    <a href="" class="todoClearCompleted" ng-click="archive()">Clear completed({{todos.length - remaining()}})</a>
+                    <a href="" class="todoClearCompleted" ng-click="archive()">Clear completed({{trash()}})</a>
                 </div>
             </div>
         </section>
