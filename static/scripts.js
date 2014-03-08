@@ -4,8 +4,10 @@ function TodoCtrl($scope) {
         {text:'build an angular app', done:false}];
 
     $scope.addTodo = function() {
-        $scope.todos.push({text:$scope.todoText, done:false});
-        $scope.todoText = '';
+        if ($scope.todoText) {
+            $scope.todos.push({text:$scope.todoText, done:false});
+            $scope.todoText = '';
+        }
     };
 
     $scope.remaining = function() {

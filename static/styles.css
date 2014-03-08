@@ -1,4 +1,32 @@
-.done-true {
-    text-decoration: line-through;
-    color: grey;
-}
+/* CSS Reset */
+@import url(http://reset5.googlecode.com/hg/reset.min.css);
+
+/* Todos block */
+.todoWrap {display: block; margin: 50px auto 0; width: 470px; border: 1px solid #222222; padding: 30px 50px 60px; font-family: Arial, sans-serif;}
+.todoTitle {font-size: 63px; text-align: center; font-weight: normal;}
+
+.todoForm {margin: 5px 0 10px; position: relative;}
+.todoInput {margin: 0; width: 436px; height: 45px; font-size: 21px; padding: 0 25px 0 5px}
+.todoButtonAdd {display: none; position: absolute; top: 10px; right: 10px; border: 0; border-radius: 7px; opacity: .3; cursor: pointer; width: 30px; height: 30px;}
+.todoButtonAdd:focus,
+.todoInput:focus + .todoButtonAdd {display: inline-block;}
+.todoButtonAdd:hover {opacity: 1;}
+.todoButtonAdd:focus {opacity: 0;}
+
+.todoList {}
+.todoItem {list-style-type: none; height: 36px; line-height: 36px; padding-top: 10px; border-top: 1px solid #dddddd; margin-bottom: 10px; font-size: 0;}
+.todoItem:first-child {border: 0;}
+.todoItem * {vertical-align: middle;}
+.todoItemInput {display:none;}
+.todoItemLabel {background: url(sprite.png); width: 38px; height: 36px; display: inline-block; margin-right: 10px; cursor: pointer;}
+.todoItem.done .todoItemLabel {background-position: 0 -36px;}
+.todoItemText {font-size: 17px; color: #666666;}
+.todoItem.done .todoItemText {text-decoration: line-through; color: #000000;}
+
+.todoFooter {margin: 40px 0 0; text-align: center; font-size: 13px;}
+.todoCountActive {float: left;}
+.todoFooter a,
+.todoFooter a:hover {color: #000000;}
+.todoFilterLink {text-decoration: none; margin: 0 5px;}
+.todoFilterLink.selected {font-weight: bold;}
+.todoClearCompleted {float: right;}

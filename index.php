@@ -8,23 +8,28 @@
         <script src="static/scripts.js" type="text/javascript"></script>
     </head>
     <body>
-        <h2>todos</h2>
-        <div ng-controller="TodoCtrl">
-            <form ng-submit="addTodo()">
-                <input type="text" ng-model="todoText"  size="30" placeholder="What needs to be done?">
-                <input class="btn-primary" type="submit" value="add">
-            </form>
-            <ul class="unstyled">
-                <li ng-repeat="todo in todos | filter : {done : searchQuery}">
-                    <input type="checkbox" ng-model="todo.done">
-                    <span class="done-{{todo.done}}">{{todo.text}}</span>
-                </li>
-            </ul>
-            <span>{{remaining()}} item left</span>
-            <a ng-click="searchQuery = ''" href="">All</a>
-            <a ng-click="searchQuery = 'false'" href="">Active</a>
-            <a ng-click="searchQuery = 'true'" href="">Completed</a>
-            <a href="" ng-click="archive()">Clear completed({{todos.length - remaining()}})</a>
-        </div>
+        <section class="todoWrap">
+            <h1 class="todoTitle">todos</h1>
+            <div ng-controller="TodoCtrl">
+                <form class="todoForm" ng-submit="addTodo()">
+                    <input class="todoInput" type="text" ng-model="todoText" placeholder="What needs to be done?">
+                    <input class="todoButtonAdd" type="submit" value="&#10004;" title="Add todo">
+                </form>
+                <ul class="todoList">
+                    <li class="todoItem {{todo.done ? 'done' : ''}}" ng-repeat="todo in todos | filter : {done : searchQuery}">
+                        <input id="todoItemInput{{$index + 1}}" class="todoItemInput" type="checkbox" ng-model="todo.done">
+                        <label class="todoItemLabel" for="todoItemInput{{$index + 1}}"></label>
+                        <span class="todoItemText">{{todo.text}}</span>
+                    </li>
+                </ul>
+                <div class="todoFooter">
+                    <span class="todoCountActive">{{remaining()}} item left</span>
+                    <a ng-class="{selected: !searchQuery}" ng-click="searchQuery = ''" class="todoFilterLink" href="">All</a>
+                    <a ng-class="{selected: searchQuery == 'false'}" ng-click="searchQuery = 'false'" class="todoFilterLink" href="">Active</a>
+                    <a ng-class="{selected: searchQuery == 'true'}" ng-click="searchQuery = 'true'" class="todoFilterLink" href="">Completed</a>
+                    <a href="" class="todoClearCompleted" ng-click="archive()">Clear completed({{todos.length - remaining()}})</a>
+                </div>
+            </div>
+        </section>
     </body>
 </html>
