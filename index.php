@@ -20,6 +20,7 @@
                         <input id="todoItemInput{{$index + 1}}" class="todoItemInput" type="checkbox" ng-model="todo.done">
                         <label class="todoItemLabel" for="todoItemInput{{$index + 1}}"></label>
                         <span class="todoItemText">{{todo.text}}</span>
+                        <div class="todoItemRemove" ng-click="remove($index)">&#10006;</div>
                     </li>
                 </ul>
                 <div class="todoFooter">

@@ -7,14 +7,29 @@
 
 .todoForm {margin: 5px 0 10px; position: relative;}
 .todoInput {margin: 0; width: 436px; height: 45px; font-size: 21px; padding: 0 25px 0 5px}
-.todoButtonAdd {display: none; position: absolute; top: 10px; right: 10px; border: 0; border-radius: 7px; opacity: .3; cursor: pointer; width: 30px; height: 30px;}
+.todoButtonAdd {display: none; position: absolute; top: 10px; right: 10px; border: 0; cursor: pointer; width: 30px; height: 30px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    -moz-opacity: .3;
+    opacity: .3;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=30);
+}
 .todoButtonAdd:focus,
 .todoInput:focus + .todoButtonAdd {display: inline-block;}
-.todoButtonAdd:hover {opacity: 1;}
-.todoButtonAdd:focus {opacity: 0;}
+.todoButtonAdd:hover {
+    -moz-opacity: 1;
+    opacity: 1;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=100);
+}
+.todoButtonAdd:focus {
+    -moz-opacity: 0;
+    opacity: 0;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=0);
+}
 
 .todoList {}
-.todoItem {list-style-type: none; height: 36px; line-height: 36px; padding-top: 10px; border-top: 1px solid #dddddd; margin-bottom: 10px; font-size: 0;}
+.todoItem {list-style-type: none; height: 36px; line-height: 36px; padding-top: 10px; border-top: 1px solid #dddddd; margin-bottom: 10px; font-size: 0; position: relative;}
 .todoItem:first-child {border: 0;}
 .todoItem * {vertical-align: middle;}
 .todoItemInput {display:none;}
@@ -22,6 +37,26 @@
 .todoItem.done .todoItemLabel {background-position: 0 -36px;}
 .todoItemText {font-size: 17px; color: #666666;}
 .todoItem.done .todoItemText {text-decoration: line-through; color: #000000;}
+.todoItemRemove {font-size: 15px; color: #DD1D1D; position: absolute; top: 15px; right: 10px; cursor: pointer; line-height: 1; padding: 5px;
+    -moz-opacity: 0;
+    opacity: 0;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=0);
+    -webkit-transition: opacity linear 0.2s;
+    -moz-transition: opacity linear 0.2s;
+    -o-transition: opacity linear 0.2s;
+    transition: opacity linear 0.2s;
+}
+.todoItem:hover .todoItemRemove {
+    -moz-opacity: .5;
+    opacity: .5;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=50);
+}
+.todoItem .todoItemRemove:hover {
+    -moz-opacity: 1;
+    opacity: 1;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=100);
+    text-shadow: 0px 0px 2px rgba(150, 150, 150, 1);
+}
 
 .todoFooter {margin: 40px 0 0; text-align: center; font-size: 13px;}
 .todoCountActive {float: left;}

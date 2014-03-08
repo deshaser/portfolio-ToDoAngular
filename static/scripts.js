@@ -25,4 +25,8 @@ function TodoCtrl($scope) {
             if (!todo.done) $scope.todos.push(todo);
         });
     };
+
+    $scope.remove = function(id) {
+        $scope.todos.splice(id,1);
+    };
 }
