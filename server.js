@@ -13,7 +13,7 @@ app.get('/', function(req, res) {
 });
 app.use(express.static(__dirname + '/static'));
 
-routes.setup(app, qs);
+routes.setup(app, qs, io);
 
 io.sockets.on('connection', function(socket){
     socket.on('send todo', function(data) {

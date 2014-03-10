@@ -1,10 +1,9 @@
 var TodoModel = require('./libs/mongoose').TodoModel;
 
-module.exports.setup = function (app, qs) {
+module.exports.setup = function (app, qs, io) {
 
     // get all todo's
     app.get('/api/todo', function(req, res) {
-        //var query = qs.parse(req._parsedUrl.query);
         return TodoModel.find(function (err, data) {
             if (!err) {
                 return res.send(data);
@@ -17,7 +16,6 @@ module.exports.setup = function (app, qs) {
 
     // get one todo
     app.get('/api/todo/:id', function(req, res) {
-        //var query = qs.parse(req._parsedUrl.query);
         return TodoModel.findById(req.params.id, function (err, data) {
             if(!data) {
                 res.statusCode = 404;
@@ -40,6 +38,7 @@ module.exports.setup = function (app, qs) {
         todo.done = query.done;
         return todo.save(function (err, data) {
             if (!err) {
+                io.sockets.emit('new todo', data);
                 return res.send(data);
             } else {
                 if(err.name == 'ValidationError') {
@@ -65,6 +64,7 @@ module.exports.setup = function (app, qs) {
             todo.done = query.done;
             return todo.save(function (err) {
                 if (!err) {
+                    io.sockets.emit('update todo', todo);
                     return res.send(todo);
                 } else {
                     if(err.name == 'ValidationError') {
@@ -79,22 +79,27 @@ module.exports.setup = function (app, qs) {
         });
     });
 
-    // remove old todo
-    app.delete('/api/todo/:id', function (req, res){
-        return TodoModel.findById(req.params.id, function (err, todo) {
-            if(!todo) {
-                res.statusCode = 404;
-                return res.send({ error: 'Not found' });
-            }
-            return todo.remove(function (err, data) {
-                if (!err) {
-                    return res.send(data);
-                } else {
-                    res.statusCode = 500;
-                    return res.send({ error: 'Server error' });
+    // remove old todo(s)
+    app.delete('/api/todo', function (req, res){
+        var query = req._parsedUrl.query.split('&');
+        for (var i = 0; i < query.length; i++) {
+            var ids = query[i].split('=');
+            TodoModel.findById(ids[1], function (err, todo) {
+                if(!todo) {
+                    res.statusCode = 404;
+                    return res.send({ error: 'Not found' });
                 }
+                return todo.remove(function (err, data) {
+                    if (!err) {
+                        io.sockets.emit('remove todo', data);
+                        return res.send(data);
+                    } else {
+                        res.statusCode = 500;
+                        return res.send({ error: 'Server error' });
+                    }
+                });
             });
-        });
+        };
     });
 
 };
