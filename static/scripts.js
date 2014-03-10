@@ -1,6 +1,6 @@
 var todoApp = angular.module('TodoApp', ['ngSocket']);
 
-todoApp.controller('TodoCtrl', function($scope, $socket) {
+todoApp.controller('TodoCtrl', function($scope, $socket, $http) {
 
     // function initializes todo's
     $scope.todos = [

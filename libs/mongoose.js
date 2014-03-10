@@ -13,8 +13,8 @@ db.once('open', function callback() {
 var todoSchema = mongoose.Schema({
     text: String,
     done: Boolean
-})
-var Todos = mongoose.model('Todos', todoSchema)
+});
+var Todos = mongoose.model('Todos', todoSchema);
 
 // if db is empty - add new todo's
 Todos.find(function(err, data){
@@ -32,3 +32,5 @@ Todos.find(function(err, data){
         }
     };
 });
+
+module.exports.TodoModel = Todos;
