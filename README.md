@@ -1,23 +1,23 @@
 todos
 =====================
 
-Создать приложения заметок. Приложения должно выглядеть как в мокапе.
+Create note taking applications. Applications should look like in a mockup.
 ![alt text](https://raw.github.com/deshaser/portfolio-ToDoAngular/master/mockup.png)
 
-Должны быть реализованы следующие возможности:
+The following features should be implemented:
 
-1. Добовление заметки
+1. Adding a todo
 
-2. Удаление заметки
+2. Removing a todo
 
-3. Отметить заметку как завершеную
+3. Mark a todo as completed
 
-4. Выводить количество заметок как активных так и завершенных
+4. Show the number of todos both active and completed
 
-5. Сделать фильтры: все заметки, все завершенные, все активные
+5. Make filters: all todos, all completed, all active
 
-6. Создать апи для сохранения состояния заметок(php или nodejs, БД и стурктура хранения данных на усмотрения, хоть на файлах)
+6. Create api for saving todos state (php or nodejs, DB and data storage structure at discretion)
 
-7. Изменения сделанные одним пользователем должны сразу отображаться другим на странице без перезагрузки.
+7. Changes made by one user should immediately be displayed to other users on the page without reloading
 
-* по возможности использовать AngularJs
+* whenever possible use AngularJS
